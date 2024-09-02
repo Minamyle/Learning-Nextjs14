@@ -1,5 +1,5 @@
 // export const fetchCache = "default-cache";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 type Product = {
   id: number;
   title: string;
@@ -9,7 +9,9 @@ type Product = {
 
 export default async function PProductPage() {
   const response = await fetch("http://localhost:3001/products", {
-    cache: "no-store",
+    next: {
+      revalidate: 10,
+    },
   });
   const products = await response.json();
   return (
